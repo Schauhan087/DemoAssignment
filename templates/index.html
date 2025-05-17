@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Caption Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+        h1 {
+            color: #e1306c;
+            margin-bottom: 30px;
+        }
+        .caption-box {
+            background-color: #f5f5f5;
+            border-left: 4px solid #e1306c;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+            font-size: 18px;
+        }
+        form {
+            margin-top: 25px;
+        }
+        select {
+            padding: 10px;
+            width: 70%;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #e1306c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #c13584;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Instagram Caption Generator</h1>
+        
+        {% if caption %}
+        <div class="caption-box">
+            {{ caption }}
+        </div>
+        {% endif %}
+        
+        <form action="/generate" method="post">
+            <select name="category">
+                <option value="selfie" {% if category == 'selfie' %}selected{% endif %}>Selfie</option>
+                <option value="nature" {% if category == 'nature' %}selected{% endif %}>Nature</option>
+                <option value="food" {% if category == 'food' %}selected{% endif %}>Food</option>
+                <option value="travel" {% if category == 'travel' %}selected{% endif %}>Travel</option>
+            </select>
+            <br>
+            <button type="submit">Generate Caption</button>
+        </form>
+    </div>
+</body>
+</html>
